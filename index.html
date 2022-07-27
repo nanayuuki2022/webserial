@@ -99,14 +99,19 @@
                   
                    // ロール回転角 r(ラジアン）
                    r = Math.atan(nY / nZ);
-                   console.log(value, sV, num, nX, nY, nZ, r );
+                   // ピッチ回転角 p(ラジアン）
+                   p = Math.atan(nX / Math.sqrt(nY ** 2 + nZ ** 2));
                        
-
+                   console.log(value, sV, num, nX, nY, nZ, r, p );
+                       
+                   // With three.js
+                   el.object3D.scale.set(-r, 0, p);
+                   el.object3D.rotation.x += Math.PI/2;
+                       
                    //el.setAttribute('scale', JSON.stringify(string));
                    // With three.js
-                   el.object3D.scale.set(nX/500, nY/500, nZ/500);
+                   //el.object3D.scale.set(nX/500, nY/500, nZ/500);
 
-                   //
                   }
                 } catch (error) {
                    console.log("Error: Read");
