@@ -100,7 +100,7 @@
                    // ロール回転角 r(ラジアン）
                    r = Math.atan(nY / nZ);
                    // ピッチ回転角 p(ラジアン）
-                   p = Math.atan(nX / Math.sqrt(nY ** 2 + nZ ** 2));
+                   p = Math.atan(-nX / Math.sqrt(nY ** 2 + nZ ** 2));
                        
                    console.log(value, sV, num, nX, nY, nZ, r, p );
                        
