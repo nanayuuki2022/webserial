@@ -36,6 +36,10 @@
           var nZ = 0;
           var r = 0.0;   // ロール回転角 r(ラジアン）
           var p = 0.0;   // ピッチ回転角 p(ラジアン）
+          var y = 0.0;   // ヨウ回転角   y(ラジアン)
+          var btnA = 0;  // microBitのAボタン
+          var btnB = 0;  // microBitのBボタン
+          var btnC = 0;  // microBitのABボタン
           
           //var data = {};
 
@@ -95,17 +99,32 @@
                      nY = num;
                    } else if(sV==="Z") {
                      nZ = num;
+                   } else if(sV==="A") {
+                       btnA = num;
+                   } else if(sV==="B") {
+                       brnB = num;
+                   } else if(sV==="C") {
+                       btnC = num;
                    }
+                       
                   
                    // ロール回転角 r(ラジアン）
                    r = Math.atan(nY / nZ);
                    // ピッチ回転角 p(ラジアン）
                    p = Math.atan(-nX / Math.sqrt(nY * nY + nZ * nZ));
+                   // ヨウ回転角   y(ラジアン)
+                   if (btnA == 1){ 
+                       y = y + 6.28 / 360;
+                   } else if(btnB == 1) {
+                       y = y - 6.28 / 360;
+                   } else if(btnC == 1) {
+                       y = 0;
+                   }
                        
                    console.log(value, sV, num, nX, nY, nZ, r, p );
                        
                    // With three.js
-                   el.object3D.rotation.set(r, 0, p);
+                   el.object3D.rotation.set(r, y, p);
                    el.object3D.rotation.x += Math.PI/2;
                        
                    //el.setAttribute('scale', JSON.stringify(string));
